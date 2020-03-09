@@ -7,6 +7,7 @@ const mkdirp = require('mkdirp');
 const getParameters = require('./clients/getParameters');
 
 const download = async (url, destPath) => {
+  console.log('downloading backup');
   const res = await fetch(url);
   await new Promise((resolve, reject) => {
     const fileStream = fs.createWriteStream(destPath);
@@ -21,6 +22,7 @@ const download = async (url, destPath) => {
 };
 
 const getBackupUrl = async (grapheneBaseUrl, headers, prodDbId) => {
+  console.log('getting backup url');
   const backupResponse = await fetch(
     `${grapheneBaseUrl}/databases/${prodDbId}/backups`,
     { headers },
@@ -52,7 +54,7 @@ const run = async () => {
     mkdirp(`${homedir}/temp`);
     await download(backupUrl, `${homedir}/temp/graph.tar.gz`);
     mkdirp(`${homedir}/neo4j/data/databases`);
-
+    console.log('extracting tar');
     tar
       .extract({
         file: `${homedir}/temp/graph.tar.gz`,

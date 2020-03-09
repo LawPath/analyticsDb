@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
 
 const pattern = /^ssm:(.+)/;
-const ssm = new AWS.SSM({ region: process.env.Region });
+const ssm = new AWS.SSM({ region: process.env.REGION });
 
 module.exports = async (parameters) => {
   const Names = parameters.reduce((names, parameter) => {

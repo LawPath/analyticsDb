@@ -40,9 +40,9 @@ const getBackupUrl = async (grapheneBaseUrl, headers, prodDbId) => {
 const run = async () => {
   try {
     const [grapheneAuthToken, grapheneBaseUrl, prodDbId] = await getParameters([
-      process.env.GRAPHENE_AUTH_TOKEN,
-      process.env.GRAPHENE_BASE_URL,
-      process.env.PROD_DB_ID,
+      'ssm:/Production/analyticsDb/grapheneAuthToken',
+      'ssm:/Production/analyticsDb/grapheneBaseUrl',
+      'ssm:/Production/analyticsDb/prodDbId',
     ]);
 
     const headers = {
@@ -60,7 +60,18 @@ const run = async () => {
         file: `${homedir}/temp/graph.tar.gz`,
         cwd: `${homedir}/neo4j/data/databases`,
       })
-      .then(() => console.log('tar extracted'));
+      .then(() =>
+        fs.appendFile(
+          `${homedir}/neo4j/logs/download-logs.txt`,
+          `Last downloaded ${Date(Date.now()).toString()}\n`,
+          (err) => {
+            if (err) {
+              console.log(err);
+            }
+            console.log('completed');
+          },
+        ),
+      );
   } catch (err) {
     console.log(err);
   }

@@ -12,3 +12,7 @@ Base setup of EC2 requires running `setup-server.sh`
 
 then run `docker-compose up -d`
 
+cron job has been setup
+
+`0 2 * * * /home/ec2-user/.nvm/versions/node/v13.10.1/bin/node /home/ec2-user/resources/analyticsDb/src/getDbBackupData.js`
+

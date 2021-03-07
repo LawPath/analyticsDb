@@ -2,7 +2,7 @@ version: '3'
 
 services:
   neo4j:
-    image: neo4j:3.0.6
+    image: neo4j:3.5.17
     ports:
       - "80:7474"
       - "7687:7687"

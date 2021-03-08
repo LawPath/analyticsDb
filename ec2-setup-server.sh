@@ -13,3 +13,4 @@ npm install yarn -g
 (crontab -l 2>/dev/null; echo "0 2 * * * /home/ec2-user/.nvm/versions/node/v13.10.1/bin/node /home/ec2-user/resources/analyticsDb/src/getDbBackupData.js") | crontab -
 sudo service docker start
 docker-compose up -d
+

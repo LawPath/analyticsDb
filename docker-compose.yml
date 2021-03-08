@@ -8,4 +8,7 @@ services:
       - "7687:7687"
     volumes:
       - $HOME/neo4j/logs:/logs
-      - $HOME/neo4j/data:/data
+      - $HOME/neo4j/data/databases:/data
+
+
+      

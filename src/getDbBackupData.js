@@ -55,24 +55,24 @@ const run = async () => {
     await mkdirp(`${homedir}/neo4j/data/databases`);
     await mkdirp(`${homedir}/neo4j/logs`);
     await download(backupUrl, `${homedir}/temp/graph.tar.gz`);
-    console.log('extracting tar');
-    tar
-      .extract({
-        file: `${homedir}/temp/graph.tar.gz`,
-        cwd: `${homedir}/neo4j/data/databases`,
-      })
-      .then(() =>
-        fs.appendFile(
-          `${homedir}/neo4j/logs/download-logs.txt`,
-          `Last downloaded ${Date(Date.now()).toString()}\n`,
-          (err) => {
-            if (err) {
-              console.log(err);
-            }
-            console.log('completed');
-          },
-        ),
-      );
+    console.log('finished downloading');
+    // tar
+    //   .extract({
+    //     file: `${homedir}/temp/graph.tar.gz`,
+    //     cwd: `${homedir}/neo4j/data/databases`,
+    //   })
+    //   .then(() =>
+    //     fs.appendFile(
+    //       `${homedir}/neo4j/logs/download-logs.txt`,
+    //       `Last downloaded ${Date(Date.now()).toString()}\n`,
+    //       (err) => {
+    //         if (err) {
+    //           console.log(err);
+    //         }
+    //         console.log('completed');
+    //       },
+    //     ),
+    //   );
   } catch (err) {
     console.log(err);
   }

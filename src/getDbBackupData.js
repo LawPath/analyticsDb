@@ -51,9 +51,9 @@ const run = async () => {
 
     const homedir = os.homedir();
     const backupUrl = await getBackupUrl(grapheneBaseUrl, headers, prodDbId);
-    await mkdirp(`${homedir}/temp`);
-    await mkdirp(`${homedir}/neo4j/data/databases`);
-    await mkdirp(`${homedir}/neo4j/logs`);
+    // await mkdirp(`${homedir}/temp`);
+    // await mkdirp(`${homedir}/neo4j/data/databases`);
+    // await mkdirp(`${homedir}/neo4j/logs`);
     await download(backupUrl, `${homedir}/temp/graph.tar.gz`);
     console.log('finished downloading');
     // tar

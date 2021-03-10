@@ -1,3 +1,5 @@
+LOG_FILE="$(date +"%Y_%m_%d_%I_%M_%p").log"
+touch $LOG_FILE
 cd /home/ec2-user
 cd /home/ec2-user/analyticsDb
 docker-compose down
@@ -19,7 +21,7 @@ mkdir dbms
 cd databases
 mkdir graph.db
 cd /home/ec2-user/analyticsDb
-node ./src/getDbBackupData.js
+node ./src/getDbBackupData.js >> $LOG_FILE
 cd /home/ec2-user/temp
 sudo tar -xvzf graph.tar.gz
 cd /home/ec2-user/temp/graph.db/databases/graph.db
